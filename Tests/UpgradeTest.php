@@ -2,8 +2,8 @@
 
 namespace MQM\ToolsBundle\Test;
 
-use MQM\ProductBundle\Model\ProductManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Tests\Functional\AppKernel;
+
+
 
 class UpgradeTest extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
 {   
