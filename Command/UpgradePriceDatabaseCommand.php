@@ -36,17 +36,7 @@ class UpgradePriceDatabaseCommand extends ContainerAwareCommand
     
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->productManager = $this->getContainer()->get('mqm_product.product_manager');
-        $this->pricing = $this->getContainer()->get('mqm_pricing.pricing_manager');
-        $products = $this->productManager->findProducts();
-        foreach ($products as $product) {
-            $price = $product->getBasePrice();
-            $priceRule = $this->pricing->getPriceRuleManager()->createPriceRule();
-            $priceRule->setProduct($product);
-            $priceRule->setPrice($price);
-            $priceRule->setCurrencyCode('EUR');
-            $this->pricing->getPriceRuleManager()->savePriceRule($priceRule, false);
-        }
-        $this->pricing->getPriceRuleManager()->flush();
+        $priceUpgrade = $this->getContainer()->get('mqm_upgrade.price_upgrade');
+        $priceUpgrade->upgradeProductPricesInDB();
     }
 }
