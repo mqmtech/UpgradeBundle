@@ -8,6 +8,7 @@
         <parameter key="mqm_upgrade.price_upgrade.class">MQM\UpgradeBundle\Upgrade\PriceUpgrade</parameter>
         <parameter key="mqm_upgrade.image_fix.class">MQM\UpgradeBundle\Upgrade\FileImageFixAlternative</parameter>
         <parameter key="mqm_upgrade.image_test_object_duplication.class">MQM\UpgradeBundle\Upgrade\TestImageFileDuplication</parameter>
+        <parameter key="mqm_upgrade.user_upgrade.class">MQM\UpgradeBundle\Upgrade\UserHandler</parameter>
     </parameters>
 
     <services>
@@ -15,6 +16,11 @@
             <argument type="service" id="mqm_pricing.pricing_manager"/>
             <argument type="service" id="mqm_product.product_manager"/>
             <argument type="service" id="service_container"/>
+        </service>
+        
+        <service id="mqm_upgrade.user_upgrade" class="%mqm_upgrade.user_upgrade.class%" public="true" >
+            <argument type="service" id="mqm_user.user_manager"/>
+            <argument type="service" id="security.encoder_factory" />
         </service>
 
         <service id="mqm_upgrade.image_fix" class="%mqm_upgrade.image_fix.class%" public="true" >
